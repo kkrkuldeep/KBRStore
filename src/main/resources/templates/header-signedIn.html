@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<nav class="navbar navbar-light" th:fragment="headerSignedIn">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><strong>KBR Store</strong></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right flex-row">
+            <li class="mr-3" sec:authorize="hasAuthority('ROLE_CUSTOMER')">
+                <a class="btn btn-outline-primary" th:href="@{/myOrder}"><strong>My Order</strong></a>
+            </li>
+            <li class="mr-3" sec:authorize="hasAuthority('ROLE_CUSTOMER')">
+                <a class="btn btn-outline-info" th:href="@{/cart}"><strong>View Cart</strong></a>
+            </li>
+            <li >
+                <form class="navbar-form navbar-right" th:action="@{/logout}" method="POST">
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success" value="search">Logout</button>
+                    </div>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>

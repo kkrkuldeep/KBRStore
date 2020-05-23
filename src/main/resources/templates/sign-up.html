@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div sec:authorize="isAnonymous()">
+    <div th:replace="~{header-notSignedIn :: headerNotSignedIn}">navNotSignedIn</div>
+</div>
+
+<div class="container">
+    <div class="col-md-6 offset-md-3 col-xs-12">
+
+        <div title="signup" style="color: green;">
+            <h1>Sign Up</h1>
+        </div>
+
+        <form th:action="@{/auth/register}" th:object="${customer}" method="post">
+
+            <div class="form-group">
+                <label>Full Name</label>
+                <input th:field="*{name}" type="text" name="name" class="form-control" placeholder="Enter Full name">
+                <br>
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger"></p>
+            </div>
+
+            <div class="form-group">
+                <label>Email address</label>
+                <input th:field="*{email}" type="text" name="emailId" class="form-control" placeholder="Enter email">
+                <br>
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="alert alert-danger"></p>
+            </div>
+
+            <div class="form-group">
+                <label>Mobile number</label>
+                <input th:field="*{phoneNumber}" type="text" name="phoneNumber" class="form-control"
+                       placeholder="Enter Mobile Number">
+                <br>
+                <p th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"
+                   class="alert alert-danger"></p>
+            </div>
+
+            <div class="form-group">
+                <label>Password</label>
+                <input th:field="*{password}" type="password" name="password" class="form-control"
+                       placeholder="Password">
+                <br>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="alert alert-danger"></p>
+            </div>
+
+            <button type="reset" value="Clear" class="btn btn-info">Clear</button>
+            <button type="submit" class="btn btn-warning">
+                <a th:href="@{/auth/login-form}" style="text-decoration: none; color: white">Sign In</a>
+            </button>
+            <button type="submit" class="btn btn-success">Submit</button>
+
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

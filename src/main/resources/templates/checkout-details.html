@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8"/>
+    <title>KBR Store</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <script th:src="@{/js/buttonIncrement.js}"></script>
+    <!--    <link rel="stylesheet" th:href="@{/css/counter.css}">-->
+
+</head>
+<body>
+
+<nav class="navbar navbar-light">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><strong>KBR Store</strong></a>
+        </div>
+
+        <form class="navbar-form navbar-right" th:action="@{/logout}" method="POST">
+            <div class="form-group">
+                <button type="submit" class="btn btn-success" value="search">Logout</button>
+            </div>
+        </form>
+
+    </div>
+</nav>
+<br><br>
+
+<div class="container">
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">1</span>
+                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapseOne"
+                                aria-expanded="false" aria-controls="collapseOne">
+                            USER
+                        </button>
+                    </div>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-5 ml-5">
+                            <p class="text-secondary" th:text="${customer.getPhoneNumber()}">Phone: +1234567890</p>
+                            <p class="text-secondary" th:text="${customer.getEmail()}">Email: kbr.store@gmail.com</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-secondary">Advantages of our secure login</p>
+                            <i class="fa fa-truck" aria-hidden="true">
+                                <p style="color: black" class="display">&nbsp;Easily Track Orders, Hassle free
+                                    returns</p>
+                            </i>
+                            <i class="fa fa-bell" aria-hidden="true">
+                                <p style="color: black" class="display">&nbsp;Get relevant Alerts and Recommendation</p>
+                            </i>
+                            <i class="fa fa-star" aria-hidden="true">
+                                <p style="color: black" class="display">&nbsp;Wishlist, Reviews, ratings and more</p>
+                            </i>
+                        </div>
+
+                        <p class="text-secondary ml-5"><br>Please note the after paying using "Rozerpay you will lose
+                            all
+                            items in cart and a order will be placed
+                            and you will be redirected to kbrstore home page"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon2">2</span>
+                        <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapseTwo"
+                                aria-expanded="false" aria-controls="collapseOne">
+                            DELIVERY ADDRESS
+                        </button>
+                    </div>
+                </h5>
+            </div>
+
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                 data-parent="#accordionExample">
+
+                <div class="card-body">
+                    <div class="col-md-8">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" th:each="address : ${addressList}">
+                                <input th:value=" ${address.getId()}" type="radio" name="addressId"
+                                       onclick="getRadioButton()" class="display"
+                                       aria-label="Radio button for following text input">
+                                <h6 class="text-secondary display"><strong th:text="${address.getCustomer().getName()}">Kuldeep
+                                    Singh</strong></h6>
+                                <h6 class="text-secondary display"><strong th:text="${address.getPhoneNumber()}">+9876543120</strong>
+                                </h6>
+                                <h6 th:text="${address.getLocation()} + ', ' + ${address.getCity()} + ', ' +
+                                 ${address.getCountry()} + ', ' + ${address.getZipCode()}">&nbsp;&nbsp;&nbsp;&nbsp;MZ-456,
+                                    Noida, Secotr-23, Delhi-132456</h6>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p>
+
+                    <button class="btn btn-info btn-lg btn-block col-md-2 ml-5" type="button" data-toggle="collapse"
+                            data-target="#collapseExample"
+                            aria-expanded="false" aria-controls="collapseExample">
+                        Add Address
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <form th:action="@{/newAddress}" th:object="${newAddress}" method="Post">
+                        <div class="form-groupm ml-5">
+                            <input class="form-control form-control-lg col-md-4 display" type="text"
+                                   placeholder="Locality" th:field="*{location}">
+                            <input class="form-control form-control-lg col-md-4 display" type="text"
+                                   placeholder="Mobile Number" th:field="*{phoneNumber}">
+
+                            <div class="clearfix"><br></div>
+                            <input class="form-control form-control-lg col-md-4 display" type="text"
+                                   placeholder="Zipcode" th:field="*{zipCode}">
+                            <input class="form-control form-control-lg col-md-4 display" type="text"
+                                   placeholder="City" th:field="*{city}">
+                            <div class="clearfix"><br></div>
+                            <input class="form-control form-control-lg col-md-4 display" type="text"
+                                   placeholder="Country" th:field="*{country}">
+                            <div class="clearfix"><br><br></div>
+                            <button type="submit" class="btn btn-info btn-lg btn-block col-md-6">Add Address
+                            </button>
+                        </div>
+                    </form>
+                    <br><br>
+                </div>
+
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon3">3</span>
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapseThree"
+                                    aria-expanded="false" aria-controls="collapseOne">
+                                ORDER SUMMARY
+                            </button>
+                        </div>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <div th:each="cartItem : ${cartItemList}"> <!-- Start you loop here-->
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img th:src="*{'data:image/jpg;base64,'+ cartItem.getProduct().getEncodedBase64String()}">
+                                        <h5 th:text="'product Quantity :' + ${cartItem.getQuantity()}"></h5>
+                                        <h5 th:text="'product Price :' + ${cartItem.getProduct().getPrice()}"></h5>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h3 th:text="${cartItem.getProduct().getName()}">Onion</h3>
+                                        <h5 class="text-secondary">Seller: Ravi Store</h5><br>
+                                        <div class="display">
+                                            <h4 class="display"><strong class="display"
+                                                                        th:text="${cartItem.getPrice()}">&#8377;45</strong>
+                                            </h4>
+                                            <h5 class="display">
+                                                <del>&nbsp;&#8377;50</del>
+                                                <h4 class="display"><strong class="text-success">20% Off</strong></h4>
+                                            </h5>
+                                            <br><br>
+                                            <a th:href="@{cart/deleteCheckout/{productId}(productId=${cartItem.getProduct().getId()})}">
+                                                <button type="button" class="btn btn-light">Remove</button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr class="col-md-8 ml-0">
+                            </div>
+                        </div> <!--Loop Ends here-->
+                        <h4 id="totalPrice" th:value="${cartItemList.get(0).getCart().getTotalPrice()}"
+                            th:text="'Total Amount &#8377; '+ ${ cartItemList.get(0).getCart().getTotalPrice()}"></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h5 class="mb-0">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon4">4</span>
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapseFour"
+                                    aria-expanded="false" aria-controls="collapseOne">
+                                PAYMENT DETAILS
+                            </button>
+                        </div>
+                    </h5>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+
+                    <div class="card-body" th:with="amount = ${cartItemList.get(0).getCart().getTotalPrice()}">
+                        <button type="button" class="razorpay-payment-button" onclick="paymentProcess()">
+                            Pay with RazorPay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br>
+
+    <div th:replace="footer :: footer"></div>
+
+</div> <!-- Ending container div here -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+
+    let addressId
+
+    function paymentProcess() {
+        console.log("hello");
+        let base_url = window.location.origin;
+        let options = {
+            "key": "rzp_test_O3AUSxB8L47Bsf", // Enter the Key ID generated from the Dashboard
+            "amount": document.querySelector("#totalPrice").attributes['value']['value'] * 100, // Amount is in currency subunits. Default currency is INR. Hence, 50000 means 50000 paise or ₹500.
+            "currency": "INR",
+            "name": "KBR Store",
+            "description": "E-commerce",
+            "image": "https://lh3.googleusercontent.com/proxy/SV0NivrF68wxzVzJwVPKdkBiupx-bHZLKWTTooQqRIFacIbAIu3omTb9prwIdTux3ATVCrIHdEgu6w3jpdhRapvNrh8Rq0gx",// Replace this with the order_id created using Orders API (https://razorpay.com/docs/api/orders).
+            "handler": function (response) {
+                alert(response.razorpay_payment_id);
+                window.location = base_url + '/cart/checkout?address=' + addressId;
+            },
+            "prefill": {
+                "name": "kbr",
+                "email": "kbr.store@gmail.com",
+                "contact": "1234567890"
+            },
+            "notes": {
+                "address": "note value"
+            },
+            "theme": {
+                "color": "#B80f0A"
+            }
+        }
+
+        if (typeof addressId == 'undefined') {
+            alert("please select address");
+        } else {
+            let propay = new Razorpay(options);
+            propay.open();
+        }
+
+
+    }
+
+    function getRadioButton() {
+        let address = document.getElementsByName("addressId");
+        for (let i = 0; i < address.length; i++) {
+            if (address[i].checked) {
+                addressId = address[i].valueOf()["value"];
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

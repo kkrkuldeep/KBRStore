@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
+<head>
+    <title>KBR Store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div th:fragment="footer">
+
+    <div>
+        <div style="border: 1px solid black; padding: 15px;">
+            <h1>kbrbasket – online grocery store</h1>
+            <p>
+                Did you ever imagine that the freshest of fruits and vegetables, top quality pulses and food
+                grains, dairy products and hundreds of branded items could be handpicked and delivered to your
+                home, all at the click of a button? India’s first comprehensive online megastore,
+                kbrbasket.com, brings a whopping 20000+ products with more than 1000 brands, to over 4 million
+                happy customers. From household cleaning products to beauty and makeup, kbrbasket has
+                everything you need for your daily needs. kbrbasket.com is convenience personified We’ve taken
+                away all the stress associated with shopping for daily essentials, and you can now order all
+                your household products and even buy groceries online without travelling long distances or
+                standing in serpentine queues. Add to this the convenience of finding all your requirements
+                at one single source, along with great savings, and you will realize that kbrbasket- India’s
+                largest online supermarket, has revolutionized the way India shops for groceries. Online
+                grocery shopping has never been easier. Need things fresh? Whether it’s fruits and vegetables
+                or dairy and meat, we have this covered as well! Get fresh eggs, meat, fish and more online at
+                your convenience. Hassle-free Home Delivery options.
+                <br><br>
+                We deliver to 25 cities across India and maintain excellent delivery times, ensuring that all your
+                products from groceries to snacks branded foods reach you in time.
+            </p>
+            <ul>
+                <li>
+                    Slotted Delivery: Pick the most convenient delivery slot to have your grocery delivered.
+                    From early morning delivery for early birds, to late-night delivery for people who work the
+                    late shift, kbrbasket caters to every schedule.
+                </li>
+                <li>
+                    Express Delivery: This super useful service can be availed by customers in cities like
+                    Bangalore, Mumbai, Pune, Chennai, Kolkata, Hyderabad and Delhi-NCR in which we deliver your
+                    orders to your doorstep in 90 Minutes.
+                </li>
+                <li>
+                    BB Specialty stores: Missed out on buying that essential item from your favorite
+                    neighborhood store for tonight’s party? We’ll deliver it for you! From bakery, sweets and
+                    meat to flowers and chocolates, we deliver your order in 90 minutes, through a special
+                    arrangement with a nearby specialty store, verified by us.
+                </li>
+            </ul>
+            <button class="btn btn-sm btn-success">Read More</button>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <!--    Footer Start-->
+    <div class="row">
+        <div class="col-md-3">
+            <ul class="styleNone">
+                <li class="head-line">kbrbasket</li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">In News</a></li>
+                <li><a href="#">Green kbrbasket</a></li>
+                <li><a href="#">Privacy Poicy</a></li>
+                <li><a href="#">Affilate</a></li>
+                <li><a href="#">Terms and Conditions</a></li>
+                <li><a href="#">Carrer At kbrbasket</a></li>
+                <li><a href="#">bb Instant</a></li>
+                <li><a href="#">bb Daily</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <ul class="styleNone">
+                <li class="head-line">Help</li>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Contact Us</a></li>
+                <li><a href="#">bb Wallet FAQs</a></li>
+                <li><a href="#">bb Wallet T&Cs</a></li>
+                <li><a href="#">Vendor Connect</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <ul class="styleNone">
+                <li class="head-line">Download Our App</li>
+                <li><a href="#"><img th:src="@{/images/google-play.png}"></a></li>
+                <li><a href="#"><img th:src="@{/images/app-store.png}"></a></li>
+            </ul>
+        </div>
+        <div class="col-md-3">
+            <ul class="styleNone">
+                <li class="head-line">Get Social With Us</li>
+                <li><a href="#"><img th:src="@{/images/social.png}"></a></li>
+            </ul>
+        </div>
+    </div>
+    <!--    Footer Ends-->
+
+    <p style="border-top-style: dotted;"></p>
+
+    <div class="row">
+        <div class="col-md-3">
+            <p class="head-line">POPULAR CATEGORIES:</p>
+        </div>
+        <div class="col-md-9">
+            <p>Sunflower Oils, Wheat Atta, Ghee, Milk, Health Drinks, Flakes, Organic F&V, Namkeen, Eggs,
+                Floor Cleaners, Other Juices, Leafy Vegetables, Frozen Veg Food, Diapers & Wipes,</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p class="head-line">POPULAR BRANDS:</p>
+        </div>
+        <div class="col-md-9">
+            <p>
+                Fresho, bb Royal, Nandini, Kelloggs, 24 Mantra, Saffola, Lizol, Safal, Horlicks, MTR,
+                Fresho Meats, Whisper , Real, Milky Mist, Nivea, Himalaya, Comfort, Sunpure , Bru , Zespri,</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p class="head-line">CITIES WE SERVE:</p>
+        </div>
+        <div class="col-md-9">
+            <p>
+                Bangalore, Hyderabad, Mumbai, Pune, Chennai, Delhi, Mysore, Coimbatore, Vijayawada-Guntur,
+                Kolkata, Ahmedabad-Gandhinagar, Lucknow-Kanpur, Gurgaon, Vadodara, Visakhapatnam, Surat, Nagpur,
+                Patna, Indore, Chandigarh Tricity, Jaipur, Bhopal, Noida-Ghaziabad, Kochi,</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <p class="head-line">PAYMENT OPTIONS:</p>
+        </div>
+        <div class="col-md-9">
+            <img th:src="@{/images/payment.png}" alt="">
+        </div>
+    </div>
+
+    <div class="jumbotron">
+        <p>
+            Copyright © 2019-2021 Kuldeep Bajrang Ravi Store Pvt Ltd
+        </p>
+    </div>
+</div>
+</body>
+</html>

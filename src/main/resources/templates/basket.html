@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>KBR Store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <script th:src="@{/js/incremental.js}"></script>
+</head>
+<body class="bgColor">
+
+<div sec:authorize="isAnonymous()">
+    <div th:replace="~{header-notSignedIn :: headerNotSignedIn}">navNotSignedIn</div>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="~{header-signedIn :: headerSignedIn}">navSignedIn</div>
+</div>
+<div class="container">
+
+
+    <!-- Put your If Condition after trozon -> If Cart is Empty-->
+    <div class="trozon" th:if="${cartItems.isEmpty()}">
+        <h2>My Cart</h2>
+        <div class="text-center">
+            <img th:src="@{/images/cart-empty.png}" class="imgSizing">
+            <h3>Your cart is empty!</h3>
+            <h5>Add items to it now.</h5>
+            <!--            <form th:action="@{/single}" method="get">-->
+            <a th:href="@{/}">
+                <button type="submit" class="btn btn-primary">Shop now</button>
+            </a>
+            <!--            </form>-->
+        </div>
+    </div>
+    <!-- Show Till Here-->
+
+
+    <!--    If Is Not Empty Show this message-->
+    <div th:if="${!cartItems.isEmpty()}">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="trozon">
+                    <h3>My Cart </h3>
+                    <div th:each="cartItem : ${cartItems}"> <!-- Start you loop here-->
+                        <hr>
+                        <div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <img th:src="*{'data:image/jpg;base64,'+ cartItem.getProduct().getEncodedBase64String()}">
+
+                                    <h5 th:text="'product Quantity :' + ${cartItem.getQuantity()}"></h5>
+                                    <h5 th:text="'product Price :' + ${cartItem.getProduct().getPrice()}"></h5>
+                                    <span th:with="categoryId = ${cartItem.getProduct().getCategory().getId()}, productId = ${cartItem.getProduct().getId()}">
+                                      <a th:href="@{/category/{categoryId}/products/{productId}/(categoryId= ${categoryId}, productId = ${productId} )}">Update Quantity</a>
+                                    </span>
+
+                                </div>
+                                <div class="col-md-8">
+                                    <h3 th:text="${cartItem.getProduct().getName()}">Onion</h3>
+                                    <h5 class="text-secondary">Seller: Ravi Store</h5><br>
+                                    <div class="display">
+                                        <h4 class="display" th:text="${cartItem.getPrice()}"><strong class="display">&#8377;45</strong>
+                                        </h4>
+                                        <h5 class="display">
+                                            <del>&nbsp;&#8377;50</del>
+                                            <h4 class="display"><strong class="text-success">20% Off</strong></h4>
+                                        </h5>
+                                        <br><br>
+                                        <a th:href="@{cart/delete/{productId}(productId=${cartItem.getProduct().getId()})}">
+                                            <button type="button" class="btn btn-light">Remove</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Price Details</div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4>Total items</h4><br>
+                                <h4>Delivery</h4><br>
+                                <hr>
+                                <h4><strong>Total Amount</strong></h4>
+                                <hr>
+                            </div>
+                            <div class="col-md-4">
+                                <h4 th:text="${cartItems.get(0).getCart().getTotalItem()}">&#8377;40</h4><br>
+                                <h4><strong class="text-success">Free</strong></h4><br>
+                                <hr>
+                                <h4 th:text="${cartItems.get(0).getCart().getTotalPrice()}">&#8377;40</h4>
+                                <hr>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a th:href="@{/checkoutDetails}" class="btn btn-lg btn-warning col-md-5">
+                    Checkout</a>
+                <div class="col-md-2">
+
+                </div>
+                <a th:href="@{cart/clear-cart}" class="btn btn-lg btn-info col-md-5">clear-cart</a>
+            </div>
+        </div>
+    </div>
+    <!--Come Here -->
+
+
+    <div th:replace="footer :: footer"></div>
+
+</div> <!--Container's div-->
+</body>
+</html>

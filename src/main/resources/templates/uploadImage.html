@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <title>KBR File Upload / Download </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div sec:authorize="isAnonymous()">
+    <div th:replace="~{header-notSignedIn :: headerNotSignedIn}">navNotSignedIn</div>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="~{header-signedIn :: headerSignedIn}">navSignedIn</div>
+</div>
+<h1>File Upload / Download</h1>
+<hr>
+<!--/*@thymesVar id="msg" type=""*/-->
+<div class="container">
+
+    <div class="alert alert-success" th:if="${msg}">
+        <strong>Success!</strong>
+        <span th:text="${msg}"></span>
+    </div>
+
+    <form th:action="@{/upload}" method="post" enctype="multipart/form-data">
+        <div class="input-group col-md-6 mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">Browse</span>
+            </div>
+            <input type="file" name="files" multiple class="form-control" aria-label="Default"
+                   aria-describedby="inputGroup-sizing-default">
+        </div>
+
+        <button type="submit" value="Upload Files" class="btn btn-primary">Upload</button>
+    </form>
+</div>
+</body>
+</html>

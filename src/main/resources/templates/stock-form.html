@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Stock</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<div sec:authorize="isAnonymous()">
+    <div th:replace="~{header-notSignedIn :: headerNotSignedIn}">navNotSignedIn</div>
+</div>
+<div sec:authorize="isAuthenticated()">
+    <div th:replace="~{header-signedIn :: headerSignedIn}">navSignedIn</div>
+</div>
+<div class="container my-5">
+    <h3> Add Stocks</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/user/addStock}"
+                      th:object="${stock}" method="post" th:if="${stock!=null}">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="category" class="col-form-label">Category</label>
+                            <p th:text="${product.category.categoryName}" id="category"></p>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="productName" class="col-form-label">Product</label>
+                            <p th:text="${product.name}" id="productName"></p>
+                        </div>
+                        <div class="input-group mb-3">
+                            <select class="custom-select" id="selectedProduct" th:field="*{product}" hidden>
+                                <option th:text="${product.name}"
+                                        th:value="${product.id}" selected></option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="currentStock" class="col-form-label">Current Stock</label>
+                            <p th:text="${product.stock}" id="currentStock"></p>
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="productQuantityInStock" class="col-form-label">Stock</label>
+                            <input type="text" th:field="*{productQuantityInStock}" class="form-control"
+                                   id="productQuantityInStock" placeholder="Stock">
+                            <span th:if="${#fields.hasErrors('productQuantityInStock')}"
+                                  th:errors="*{productQuantityInStock}"
+                                  class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value="Add Stock">
+                        </div>
+
+                        <div class="form-group col-md-8"></div>
+                    </div>
+                </form>
+                <a class="btn btn-outline-info" th:href="@{/user/}" role="button">Back</a>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div th:replace="footer :: footer"></div>
+
+</div>
+</body>
+</html>

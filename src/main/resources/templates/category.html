@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Category</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<nav class="navbar navbar-light bg-primary">
+    <span class="navbar-brand mb-0 h1"><strong class="text-white">KBR Store</strong></span>
+</nav>
+
+<div class="container my-5">
+    <h3> Add Category</h3>
+    <div class="card">
+        <div class="container my-2">
+            <span class="alert-success" th:text="${success}"></span>
+        </div>
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/user/addCategory}"
+                      th:object="${category}" method="post">
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="categoryName" class="col-form-label">Category Name</label> <input
+                                type="text" th:field="*{categoryName}" class="form-control" id="categoryName"
+                                placeholder="Category Name">
+                            <span
+                                    th:if="${#fields.hasErrors('categoryName')}" th:errors="*{categoryName}"
+                                    class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-outline-success" value="Add Category">
+                            <a class="btn btn-outline-info" th:href="@{/user/}" role="button">Back</a>
+                        </div>
+
+                        <div class="form-group col-md-8"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <br><br>
+    <div th:replace="footer :: footer"></div>
+
+</div> <!--Container ends here-->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/bootstrap.bundle.js}"></script>
+</body>
+</html>

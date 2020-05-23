@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/html">
+<head>
+    <title>KBR Store</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-light" th:fragment="headerNotSignedIn">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><strong>KBR Store</strong></a>
+        </div>
+        <ul class="nav navbar-nav navbar-right flex-row">
+            <li>
+                <a class="mr-3" href="/auth/login-form"><span
+                        class="glyphicon glyphicon-user"></span> Sign In
+                </a>
+            </li>
+            <li class="display">
+                <a href="/auth/add">
+                    <span class="glyphicon glyphicon-log-in"></span> Sign Up
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+</body>
+</html>
